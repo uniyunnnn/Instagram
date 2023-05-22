@@ -1,10 +1,9 @@
 package com.cos.photogramstart;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
-public class ViewControllerTest {
+// @Controller 
+public class ViewControllerTest { // test 용으로 만든거라 이제안씁니다.
 
 	@GetMapping("/auth/signup")
 	public String signupPage() {
