@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +17,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // 빈 생성자를 자동으로 만들어주는 어노테이션
 @Data // 자동으로 Getter, Setter, toString을 만들어주는 어노테이션
 @Entity // DB에 테이블을 생성해주는 어노테이션
-public class User {
+@Builder
+public class Users {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 DB설정값(MySQL/Oracle)으로 따라간다.
 	@Id // Primary Key를 지정해주는 어노테이션
@@ -38,7 +40,7 @@ public class User {
 
     private String gender; // 성별
 
-    private String prifileImageUrl; // 프로필 사진
+    private String profileImageUrl; // 프로필 사진
 
     private String role; // 권한
 
