@@ -2,7 +2,7 @@ package com.cos.photogramstart.service;
 
 import org.springframework.stereotype.Service;
 
-import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.domain.user.Users;
 import com.cos.photogramstart.domain.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,9 @@ public class AuthService {
 
 	private final UserRepository userRepository;
 	
-	public User 회원가입 (User user) {
+	public Users 회원가입 (Users user) {
 		//회
-		User userEntity = userRepository.save(user);
+		Users userEntity = userRepository.save(user);
 		return userEntity;
 	}
 }
