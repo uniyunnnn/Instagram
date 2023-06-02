@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.domain.user.Users;
 import com.cos.photogramstart.service.AuthService;
 import com.cos.photogramstart.web.dto.auth.SignupDto;
 
@@ -36,9 +36,9 @@ public class AuthController {
 		log.info(signupDto.toString());
 		
 		//User <- SignupDto
-		User user = signupDto.toEntity();
+		Users user = signupDto.toEntity();
 //		log.info(user.toString());
-		User userEntity = authService.회원가입(user);
+		Users userEntity = authService.회원가입(user);
 		System.out.println(userEntity);
 		return "auth/signin"; // 회원가입이 완료될시 로그인 페이지로 이동
 	}
