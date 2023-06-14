@@ -11,9 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photogramstart.domain.user.Users;
+import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.AuthService;
 import com.cos.photogramstart.web.dto.auth.SignupDto;
 
@@ -49,7 +49,7 @@ public class AuthController {
                System.out.println(error.getDefaultMessage());
 
 		   }//for
-           throw new RuntimeException(errorMap.toString());
+		   throw new CustomValidationException("유효성검사 실패함", errorMap);
 	   }else { // 오류가나면 . 
 			//User <- SignupDto
 			Users user = signupDto.toEntity();

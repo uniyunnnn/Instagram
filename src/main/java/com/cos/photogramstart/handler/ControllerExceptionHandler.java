@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cos.photogramstart.handler.ex.CustomValidationException;
+import com.cos.photogramstart.web.dto.CMRespDto;
 
 @RestController //데이터를 리턴할꺼다.
 @ControllerAdvice
 public class ControllerExceptionHandler {//모든 Exception을 여기로 받아준다
 	
-	@ExceptionHandler(CustomValidationException.class) // CustomValidationException 모두 가로채기.
-    public Map<String, String> validationException(CustomValidationException e) {
-		 return e.getErrorMap();
-	 }
+	//전역적으로 사용할거라 제네릭으로 사용. 미리 리턴타입을 지정하지않아도된다. 
+    @ExceptionHandler(CustomValidationException.class)
+    public CMRespDto<?> validationException(CustomValidationException e) {
+        return new CMRespDto<Map<String, String>>(-1, e.getMessage(), e.getErrorMap());
+    }
 }
