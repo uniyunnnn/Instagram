@@ -1,7 +1,14 @@
 package com.cos.photogramstart.web;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -31,9 +38,19 @@ public class AuthController {
 	
 	// 회원가입 기능
 	@PostMapping("/auth/signup")
-	public String signup(SignupDto signupDto) {
-		//System.out.println("signup 실행됨");
-		log.info(signupDto.toString());
+	public String signup(@Valid SignupDto signupDto,BindingResult bindingResult) {
+		
+	   if(bindingResult.hasErrors()) {
+		   Map<String,String> errorMap = new HashMap<>();
+		   
+		   for(FieldError error : bindingResult.getFieldErrors()) {
+			   errorMap.put(error.getField(), error.getDefaultMessage());
+			   System.out.println("========================");
+			   System.out.println(error.getDefaultMessage());
+			   System.out.println("========================");
+		  }//for
+		   
+	   }//if
 		
 		//User <- SignupDto
 		Users user = signupDto.toEntity();
