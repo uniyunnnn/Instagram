@@ -7,38 +7,23 @@ server:
       enabled: true
     
 spring:
+  config:
+    import: classpath:application-secret.yml
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
-  datasource:
-    url: jdbc:oracle:thin:@provecrew_high?TNS_ADMIN=C:/opt/OracleCloudWallet/VFX/
-    username: provecrew
-    password: Oracle12345678
-    driver-class-name: oracle.jdbc.OracleDriver
-    hikari:
-      connection-timeout: 3000
-      validation-timeout: 3000
-      minimum-idle: 5
-      maximum-pool-size: 20
-      idle-timeout: 200000
-      max-lifetime: 240000
-      pool-name: oraPool
-
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true
-      
+    show-sql: true      
   servlet:
     multipart:
       enabled: true
       max-file-size: 2MB
-
   security:
     user:
       name: test
