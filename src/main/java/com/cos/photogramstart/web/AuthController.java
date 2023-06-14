@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photogramstart.domain.user.Users;
 import com.cos.photogramstart.service.AuthService;
@@ -45,19 +46,18 @@ public class AuthController {
 		   
 		   for(FieldError error : bindingResult.getFieldErrors()) {
 			   errorMap.put(error.getField(), error.getDefaultMessage());
-			   System.out.println("========================");
-			   System.out.println(error.getDefaultMessage());
-			   System.out.println("========================");
-		  }//for
-		   
-	   }//if
-		
-		//User <- SignupDto
-		Users user = signupDto.toEntity();
-//		log.info(user.toString());
-		Users userEntity = authService.회원가입(user);
-		System.out.println(userEntity);
-		return "auth/signin"; // 회원가입이 완료될시 로그인 페이지로 이동
+               System.out.println(error.getDefaultMessage());
+
+		   }//for
+           throw new RuntimeException(errorMap.toString());
+	   }else { // 오류가나면 . 
+			//User <- SignupDto
+			Users user = signupDto.toEntity();
+			//log.info(user.toString());
+			Users userEntity = authService.회원가입(user);
+			System.out.println(userEntity);
+			return "auth/signin"; // 회원가입이 완료될시 로그인 페이지로 이동
+	   } // if else		
 	}
 	
 	
