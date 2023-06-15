@@ -6,9 +6,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class UserController {
-
+    
 	@GetMapping("/user/{id}")
-	public String profile(@PathVariable Integer id) {
+	public String profile(@PathVariable String id) {
+		try {
+			Integer integerId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+		
+		}
 		return "user/profile";
-	}
+    }
+	
+	@GetMapping("/user/{id}/update")
+    public String update(@PathVariable Integer id) {
+        return "user/update";
+    }
 }
