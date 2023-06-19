@@ -5,7 +5,7 @@ server:
     encoding:
       charset: utf-8
       enabled: true
-    
+
 spring:
   config:
     import: classpath:application-secret.yml
@@ -19,7 +19,7 @@ spring:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true      
+    show-sql: true
   servlet:
     multipart:
       enabled: true
@@ -27,7 +27,7 @@ spring:
   security:
     user:
       name: test
-      password: 1234   
+      password: 1234
 
 #file:
-#  path: C:/workspace/springbootwork/upload/
+#path: C:/workspace/springbootwork/upload/
