@@ -19,8 +19,8 @@ public class UserUpdateDto {
     // 받지않아도되는 데이터를 엔티티로 만들면 조금 위험함 코드수정이필요한 부분
     public Users toEntity() {
         return Users.builder()
-                .name(name)
-                .password(password)
+                .name(name) // 패스워드를 기재 안했으면 문제가 됨 Validation 체크
+                .password(password)// 패스워드를 기재 안했으면 문제가 됨 Validation 체크
                 .website(website)
                 .bio(bio)
                 .phone(phone)

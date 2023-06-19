@@ -13,6 +13,8 @@ function update(userId) {
         dataType: "json"
     }).done(res => {
         console.log("update 성공", res)
+        alert("회원정보가 성공적으로 수정되었습니다.");
+        location.href = `/user/${userId}`;
     }).fail(error => {
         console.log("update 실패", error)
     });
