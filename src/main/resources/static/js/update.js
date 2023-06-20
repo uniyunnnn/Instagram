@@ -16,8 +16,13 @@ function update(userId,event) {
         console.log("update 성공", res)
         alert("회원정보가 성공적으로 수정되었습니다.");
         location.href = `/user/${userId}`;
-    }).fail(error => {//HttpStatus 상태코드 200번대가 아닐때
+    }).fail(error => { // HTTP Status 상태코드가 200번대가 아닐 때, fail이 실행된다.
         console.log("update 실패", error)
-        alert("회원정보 수정에 실패하였습니다. 원인 : " + error.responseJSON.data);
+        if (error.data == null) { // message만 응답
+            alert(error.responseJSON.message);
+        } else { // errorMap이 포함된 응답
+            alert("회원정보 수정에 실패하였습니다. 원인 : " +
+                JSON.stringify((error.responseJSON.data)));
+        }
     });
 }
