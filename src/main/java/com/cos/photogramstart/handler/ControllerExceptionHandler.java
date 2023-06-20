@@ -1,11 +1,15 @@
 package com.cos.photogramstart.handler;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.util.Script;
+import com.cos.photogramstart.web.dto.CMRespDto;
 
 @RestController //데이터를 리턴할꺼다.
 @ControllerAdvice
@@ -21,8 +25,13 @@ public class ControllerExceptionHandler {//모든 Exception을 여기로 받아�
         return Script.back(e.getErrorMap().toString());
     } // Script는 클라이언트(브라우저)의 편의성을 위해 만든 응답
 	
-//    @ExceptionHandler(CustomValidationException.class)
-//    public CMRespDto<?> validationException(CustomValidationException e) {
-//        return new CMRespDto<Map<String, String>>(-1, e.getMessage(), e.getErrorMap());
-//    }// 두번째 방법 :ajax통신이나, android 같은 통신을 할 때에는 개발자가 보아야 하기 때문에 CMRespDto가 좋다. 
+    // CMRespDto 오브젝트를 응답하는 핸들러
+    @ExceptionHandler(CustomValidationApiException.class)
+    public ResponseEntity<CMRespDto<?>> validationApiException(CustomValidationApiException e) {
+        return new ResponseEntity<>(
+                new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()),
+                HttpStatus.BAD_REQUEST
+        );
+    }// 데이터를 리턴 
+
 }
