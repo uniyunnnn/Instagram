@@ -12,11 +12,12 @@ function update(userId,event) {
         data: data,
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         dataType: "json"
-    }).done(res => {
+    }).done(res => { //HttpStatus 상태코드 200번대
         console.log("update 성공", res)
         alert("회원정보가 성공적으로 수정되었습니다.");
         location.href = `/user/${userId}`;
-    }).fail(error => {
+    }).fail(error => {//HttpStatus 상태코드 200번대가 아닐때
         console.log("update 실패", error)
+        alert("회원정보 수정에 실패하였습니다. 원인 : " + error.responseJSON.data);
     });
 }
