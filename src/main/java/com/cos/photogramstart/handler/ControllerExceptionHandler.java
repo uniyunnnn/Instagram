@@ -41,7 +41,7 @@ public class ControllerExceptionHandler {//모든 Exception을 여기로 받아�
     
     // CMRespDto 오브젝트를 응답하는 핸들러
     @ExceptionHandler(CustomApiException.class)
-    public ResponseEntity<?> apiException(CustomValidationApiException e) {
+    public ResponseEntity<?> apiException(CustomApiException e) {
 //        log.info("==============================");
     	return new ResponseEntity<>(
                 new CMRespDto<>(-1, e.getMessage(),null),
