@@ -33,6 +33,7 @@ public class PrincipalDetails implements UserDetails {
 		return collector;
 	}
 
+	
 	@Override
 	public String getPassword() {
 
