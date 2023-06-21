@@ -14,14 +14,14 @@ public class SubscribeService {
 	private final SubscribeRepository subscribeRepository;
 	
 	@Transactional
-	  public void 구독하기(Integer fromUserId, Integer toUserid) {
-		  subscribeRepository.mSubscribe(fromUserId, toUserid);
+	  public void 구독하기(Integer fromUserId, Integer toUserId) {
+		  subscribeRepository.mSubscribe(fromUserId, toUserId);
 		  
 	  }
 	
 	@Transactional
-     public void 구독취소하기(Integer fromUserId, Integer toUserid) {
-		 subscribeRepository.mUnSubscribe(fromUserId, toUserid);
+     public void 구독취소하기(Integer fromUserId, Integer toUserId) {
+		 subscribeRepository.mUnSubscribe(fromUserId, toUserId);
 		  
 
 	  }
