@@ -32,7 +32,7 @@ public class ControllerExceptionHandler {//모든 Exception을 여기로 받아�
     // CMRespDto 오브젝트를 응답하는 핸들러
     @ExceptionHandler(CustomValidationApiException.class)
     public ResponseEntity<?> validationApiException(CustomValidationApiException e) {
-//        log.info("==============================");
+        log.info("==============================");
     	return new ResponseEntity<>(
                 new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()),
                 HttpStatus.BAD_REQUEST
@@ -42,7 +42,7 @@ public class ControllerExceptionHandler {//모든 Exception을 여기로 받아�
     // CMRespDto 오브젝트를 응답하는 핸들러
     @ExceptionHandler(CustomApiException.class)
     public ResponseEntity<?> apiException(CustomApiException e) {
-//        log.info("==============================");
+        log.info("==============================");
     	return new ResponseEntity<>(
                 new CMRespDto<>(-1, e.getMessage(),null),
                 HttpStatus.BAD_REQUEST
