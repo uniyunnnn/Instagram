@@ -28,7 +28,7 @@ public class UserService {
         });
         
         dto.setUser(userEntity);
-        dto.setPageOwnerState(pageUserId == principalId);     
+        dto.setPageOwnerState(pageUserId == principalId);
         dto.setImageCount((userEntity.getImages().size()));
         return dto;
     }
