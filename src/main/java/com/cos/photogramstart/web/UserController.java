@@ -1,20 +1,19 @@
 package com.cos.photogramstart.web;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
-import com.cos.photogramstart.domain.user.Users;
 import com.cos.photogramstart.service.UserService;
 import com.cos.photogramstart.web.dto.user.UserProfileDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RequiredArgsConstructor
 @Controller
 public class UserController {
@@ -25,8 +24,11 @@ public class UserController {
 	@GetMapping("/user/{pageUserId}")
 	public String profile(@PathVariable Integer pageUserId, Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		UserProfileDto userEntity= userService.회원프로필(pageUserId, principalDetails.getUser().getId());
-		model.addAttribute("user",userEntity);
+		UserProfileDto dto = userService.회원프로필(pageUserId, principalDetails.getUser().getId());
+		model.addAttribute("dto", dto);
+	    log.info("============================ /n");
+	    log.info("dto:{}",dto);
+
 		return "user/profile";
     }
 	
