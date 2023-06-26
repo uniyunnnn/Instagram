@@ -20,9 +20,11 @@ public class UserController {
     
 	private final UserService userService;
 	
-	@GetMapping("/user/{id}")
-	public String profile(@PathVariable Integer id, Model model) {
-		Users userEntity = userService.회원프로필(id);
+	
+	@GetMapping("/user/{pageUserId}")
+	public String profile(@PathVariable Integer id, Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		Users userEntity = userService.회원프로필(pageUserId, principalDetails.getUser().getId());
 		model.addAttribute("user",userEntity);
 		return "user/profile";
     }
@@ -30,12 +32,12 @@ public class UserController {
 	@GetMapping("/user/{id}/update")
     public String update(@PathVariable Integer id , @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		//1.추천
-		System.out.println("세션 정보:"+ principalDetails.getUser());
+//		System.out.println("세션 정보:"+ principalDetails.getUser());
 		
 		//2.극혐
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		PrincipalDetails mPrincipalDetails = (PrincipalDetails)auth.getPrincipal();
-		System.out.println("직접 찾은 세션 정보"+mPrincipalDetails.getUser());
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		PrincipalDetails mPrincipalDetails = (PrincipalDetails)auth.getPrincipal();
+//		System.out.println("직접 찾은 세션 정보"+mPrincipalDetails.getUser());
 		
         return "user/update";
     }

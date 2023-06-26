@@ -35,10 +35,18 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
       <div class="name-group">
         <h2>${user.name}</h2>
 
-        <button class="cta" onclick="location.href='/image/upload'">
+      <c:choose>
+        <c:when test ="${dto.PageOwnerState}">
+         <button class="cta" onclick="location.href='/image/upload'">
           사진등록
         </button>
+        </c:when>
+        <c:otherwise>
         <button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+        </c:otherwise>
+      </c:choose>
+
+ 
         <button class="modi" onclick="popup('.modal-info')">
           <i class="fas fa-cog"></i>
         </button>
@@ -47,7 +55,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
       <div class="subscribe">
         <ul>
           <li>
-            <a href=""> 게시물<span>3</span> </a>
+            <a href=""> 게시물<span>${user.imageCount}</span> </a>
           </li>
           <li>
             <a href="javascript:subscribeInfoModalOpen();">
@@ -57,8 +65,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
         </ul>
       </div>
       <div class="state">
-        <h4>${user.bio}</h4>
-        <h4>${user.website}</h4>
+        <h4>${dto.user.bio}</h4>
+        <h4>${dto.user.website}</h4>
       </div>
     </div>
     <!--유저정보 및 사진등록 구독하기-->
@@ -74,7 +82,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
       <!--게시물컨 그리드배열-->
       <div class="tab-1-content-inner">
         <!--아이템들-->
-        <c:forEach var="image" items="${user.images}">
+        <c:forEach var="image" items="${dto.user.images}">
           <!-- EL 표현식에서 변수명을 적으면 get 함수 자동 호출-->
           <div class="img-box">
             <a href=""> <img src="/upload/${image.postImageUrl}" /> </a>
