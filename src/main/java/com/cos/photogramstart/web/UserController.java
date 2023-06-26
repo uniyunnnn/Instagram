@@ -28,7 +28,6 @@ public class UserController {
 		model.addAttribute("dto", dto);
 	    log.info("============================ /n");
 	    log.info("dto:{}",dto);
-
 		return "user/profile";
     }
 	
