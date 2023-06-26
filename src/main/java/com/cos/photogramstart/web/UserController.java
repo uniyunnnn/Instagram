@@ -20,9 +20,11 @@ public class UserController {
     
 	private final UserService userService;
 	
-	@GetMapping("/user/{id}")
-	public String profile(@PathVariable Integer id, Model model) {
-		Users userEntity = userService.회원프로필(id);
+	
+	@GetMapping("/user/{pageUserId}")
+	public String profile(@PathVariable Integer id, Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		Users userEntity = userService.회원프로필(pageUserId, principalDetails.getUser().getId());
 		model.addAttribute("user",userEntity);
 		return "user/profile";
     }
