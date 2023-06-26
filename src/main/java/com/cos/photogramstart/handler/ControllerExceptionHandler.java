@@ -26,7 +26,11 @@ public class ControllerExceptionHandler {//모든 Exception을 여기로 받아�
 	//전역적으로 사용할거라 제네릭으로 사용. 미리 리턴타입을 지정하지않아도된다.
     @ExceptionHandler(CustomValidationException.class)
     public String validationException(CustomValidationException e) {
-        return Script.back(e.getErrorMap().toString());
+    	if (e.getErrorMap() == null) {
+            return Script.back(e.getMessage());
+        } else {
+            return Script.back(e.getErrorMap().toString());
+        }
     } // Script는 클라이언트(브라우저)의 편의성을 위해 만든 응답
 	
     // CMRespDto 오브젝트를 응답하는 핸들러
