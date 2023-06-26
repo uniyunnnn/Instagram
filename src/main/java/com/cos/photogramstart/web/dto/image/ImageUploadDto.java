@@ -1,5 +1,7 @@
 package com.cos.photogramstart.web.dto.image;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.photogramstart.domain.image.Image;
@@ -10,6 +12,7 @@ import lombok.Data;
 @Data
 public class ImageUploadDto {
     
+	@NotBlank
     private MultipartFile file;
 
     private String caption;
