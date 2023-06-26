@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.domain.image.Image;
@@ -26,6 +27,7 @@ public class ImageService {
     @Value("${file.path}")
     private String uploadFolder;
 
+    @Transactional 
     public void 사진업로드(ImageUploadDto imageUploadDto, PrincipalDetails principalDetails) {
         
         UUID uuid = UUID.randomUUID();
@@ -34,18 +36,18 @@ public class ImageService {
         
         Path imageFilePath = Paths.get(uploadFolder+imageFileName);
         
-        // 통신, I/O 예외 발생잡기
+        // 파일 업로드하기: 통신, I/O 예외 발생잡기
         try {
             Files.write(imageFilePath, imageUploadDto.getFile().getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         }
         
-        //이미지 테이브렝 저장
+        // image 파일경로를 DB에 INSERT하기
         Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
-        Image imageEntity = imageRepository.save(image);
+        imageRepository.save(image);
         
-        System.out.println(imageEntity);
+        //log.info("imageEntity : {}",imageEntity);
         
     }
 }
