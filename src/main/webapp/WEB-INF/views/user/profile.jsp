@@ -89,12 +89,35 @@
     </div>
     <!--로그아웃, 회원정보변경 모달 end-->
 
+<<<<<<< HEAD
     <!--프로필사진 바꾸기 모달-->
     <div class="modal-image" onclick="modalImage()">
       <div class="modal">
         <p>프로필 사진 바꾸기</p>
         <button onclick="profileImageUpload()">사진 업로드</button>
         <button onclick="closePopup('.modal-image')">취소</button>
+=======
+    <!--유저정보 및 사진등록 구독하기-->
+    <div class="profile-right">
+      <div class="name-group">
+        <h2>${dto.user.name}</h2>
+
+      <c:choose>
+        <c:when test="${dto.pageOwnerState}">
+         <button class="cta" onclick="location.href='/image/upload'">
+          사진등록
+        </button>
+        </c:when>
+        <c:otherwise>
+        <button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+        </c:otherwise>
+      </c:choose>
+
+ 
+        <button class="modi" onclick="popup('.modal-info')">
+          <i class="fas fa-cog"></i>
+        </button>
+>>>>>>> branch 'develop' of https://github.com/uniyunnnn/Instagram.git
       </div>
     </div>
 
@@ -102,12 +125,34 @@
 
     <div class="modal-subscribe">
       <div class="subscribe">
+<<<<<<< HEAD
         <div class="subscribe-header">
           <span>구독정보</span>
           <button onclick="modalClose()">
             <i class="fas fa-times"></i>
           </button>
         </div>
+=======
+        <ul>
+          <li>
+            <a href=""> 게시물<span>${dto.imageCount}</span> </a>
+          </li>
+          <li>
+            <a href="javascript:subscribeInfoModalOpen();">
+              구독정보<span>2</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="state">
+        <h4>${dto.user.bio}</h4>
+        <h4>${dto.user.website}</h4>
+      </div>
+    </div>
+    <!--유저정보 및 사진등록 구독하기-->
+  </div>
+</section>
+>>>>>>> branch 'develop' of https://github.com/uniyunnnn/Instagram.git
 
         <div class="subscribe-list" id="subscribeModalList">
           <div class="subscribe__item" id="subscribeModalItem-1">
