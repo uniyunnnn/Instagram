@@ -26,7 +26,7 @@ public class UserController {
 		
 		UserProfileDto dto = userService.회원프로필(pageUserId, principalDetails.getUser().getId());
 		model.addAttribute("dto", dto);
-	    log.info("============================ /n");
+	    log.info("===============  UserProfileDto가 잘들어왔는지 확인하자  =============\n");
 	    log.info("dto:{}",dto);
 		return "user/profile";
     }
