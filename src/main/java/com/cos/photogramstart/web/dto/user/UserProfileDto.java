@@ -15,7 +15,7 @@ public class UserProfileDto {
 	
 	    private boolean PageOwnerState; 
 	    
-	    private int imageCount;
+	    private Integer imageCount;
 	    
 	    private Users user; 
 }
