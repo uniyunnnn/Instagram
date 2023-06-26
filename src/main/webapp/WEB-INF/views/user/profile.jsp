@@ -47,7 +47,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
       <div class="subscribe">
         <ul>
           <li>
-            <a href=""> 게시물<span>3</span> </a>
+            <a href=""> 게시물<span>${user.images.size()}</span> </a>
           </li>
           <li>
             <a href="javascript:subscribeInfoModalOpen();">
