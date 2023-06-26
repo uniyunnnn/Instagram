@@ -20,16 +20,16 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
-    public Users 회원프로필(Integer pageUserId,Integer principalId ) { // 해당 페이지 주인의 ID를 받아준다.
+    public  UserProfileDto 회원프로필(Integer pageUserId,Integer principalId ) { // 해당 페이지 주인의 ID를 받아준다.
     	UserProfileDto dto = new UserProfileDto();
         // SELECT * FROM image WHERE userId = :userId;
         Users userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
             throw new CustomException("존재하지 않는 유저의 페이지입니다.");
         });
         
-        dto.setUser(userEntity); 
+        dto.setUser(userEntity);
         dto.setPageOwnerState(pageUserId == principalId);     
-        dto.setImageCount((userEnotity.getImages().size());
+        dto.setImageCount((userEntity.getImages().size()));
         return dto;
     }
     
