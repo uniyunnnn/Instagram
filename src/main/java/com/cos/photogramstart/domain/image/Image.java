@@ -32,7 +32,7 @@ public class Image {
     private String postImageUrl; 
     
     @JoinColumn(name = "userId")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Users user;
 
     // 추후 넣을것들 : 이미지 좋아요, 좋아요 수 , 댓글 정보

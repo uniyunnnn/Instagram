@@ -11,7 +11,9 @@ import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import com.cos.photogramstart.web.dto.user.UserProfileDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -29,7 +31,9 @@ public class UserService {
         
         dto.setUser(userEntity);
         dto.setPageOwnerState(pageUserId == principalId);     
-        dto.setImageCount((userEntity.getImages().size()));
+        dto.setImageCount(userEntity.getImages().size());
+        log.info("pageUserId : {}",pageUserId);
+
         return dto;
     }
     
