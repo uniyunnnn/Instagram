@@ -39,7 +39,6 @@
             </c:choose>
             <button class="modi" onclick="popup('.modal-info')"></button>
             <i class="fas fa-cog"></i>
-            </button>
           </div>
 
           <div class="subscribe">
