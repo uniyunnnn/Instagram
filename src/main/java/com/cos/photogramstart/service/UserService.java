@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.photogramstart.domain.subscribe.SubscribeRepository;
 import com.cos.photogramstart.domain.user.UserRepository;
 import com.cos.photogramstart.domain.user.Users;
 import com.cos.photogramstart.handler.ex.CustomException;
@@ -19,6 +20,7 @@ import lombok.extern.log4j.Log4j2;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
@@ -34,6 +36,13 @@ public class UserService {
         dto.setImageCount(userEntity.getImages().size());
         log.info("pageUserId : {}",pageUserId);
 
+        // DTO에 구독정보 담기
+        Integer subscribeState = subscribeRepository.mSubscribeState(principalId, pageUserId);
+        Integer subscribeCount = subscribeRepository.mSubscribeCount(pageUserId);
+        
+        dto.setSubscribeState(subscribeState == 1);
+        dto.setSubscribeCount(subscribeCount);
+        
         return dto;
     }
     
