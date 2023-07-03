@@ -27,18 +27,17 @@
                 <button class="cta" onclick="location.href='/image/upload'">사진등록</button>
               </c:when>
               <c:otherwise>
-              	<c:choose>
-			      <c:when test="${dto.subscribeState}">
-    			   		<button class="cta blue" onclick="toggleSubscribe(${dto.user.id},this)">구독취소</button>
-			   	    	<button class="modi" onclick="popup('.modal-info')"></button>
-			      </c:when>
-			      <c:otherwise>
-     			     	<button class="cta" onclick="toggleSubscribe(${dto.user.id},this)">구독하기</button>
-			      </c:otherwise>
-			    </c:choose>
-				</c:otherwise>
+                <c:choose>
+                  <c:when test="${dto.subscribeState}">
+                    <button class="cta blue" onclick="toggleSubscribe(${dto.user.id},this)">구독취소</button>
+                  </c:when>
+                  <c:otherwise>
+                    <button class="cta" onclick="toggleSubscribe(${dto.user.id},this)">구독하기</button>
+                  </c:otherwise>
+                </c:choose>
+              </c:otherwise>
             </c:choose>
-
+            <button class="modi" onclick="popup('.modal-info')"></button>
             <i class="fas fa-cog"></i>
             </button>
           </div>
@@ -117,7 +116,7 @@
         </div>
 
         <div class="subscribe-list" id="subscribeModalList">
-        
+
           <div class="subscribe__item" id="subscribeModalItem-1">
             <div class="subscribe__img">
               <img src="#" onerror="this.src='/images/person.jpeg'" />
@@ -145,7 +144,7 @@
               </button>
             </div>
           </div>
-        
+
         </div>
       </div>
     </div>
