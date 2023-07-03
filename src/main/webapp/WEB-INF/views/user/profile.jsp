@@ -45,9 +45,9 @@
 
           <div class="subscribe">
             <ul>
-              <li><a href=""> 게시물<span>${dto.imageCount}</span>
+              <li><a href="">게시물<span>${dto.imageCount}</span>
                 </a></li>
-              <li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>${dto.subscribeCount}</span>
+              <li><a href="javascript:subscribeInfoModalOpen();">구독정보<span>${dto.subscribeCount}</span>
                 </a></li>
             </ul>
           </div>
@@ -117,6 +117,7 @@
         </div>
 
         <div class="subscribe-list" id="subscribeModalList">
+        
           <div class="subscribe__item" id="subscribeModalItem-1">
             <div class="subscribe__img">
               <img src="#" onerror="this.src='/images/person.jpeg'" />
@@ -144,6 +145,7 @@
               </button>
             </div>
           </div>
+        
         </div>
       </div>
     </div>
