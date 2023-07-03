@@ -40,7 +40,7 @@ public class UserApiController {
 	
 		List<SubscribeDto> subscribeDto = subscribeService.구독리스트(principalDetails.getUser().getId(),pageUserId);
 		return new ResponseEntity<>(new CMRespDto<>(1,"구독자 정보리스트 가져오기 성공",subscribeDto),HttpStatus.OK);
-	}
+	}//subscribeList
 
 	@PutMapping("/api/user/{id}")
 	public CMRespDto<?> update(@PathVariable Integer id, @Valid UserUpdateDto userUpdateDto,

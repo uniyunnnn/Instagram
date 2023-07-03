@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class SubscribeDto {
     
-    private Integer userId;
+    private Integer id;
     
     private String username;
 
