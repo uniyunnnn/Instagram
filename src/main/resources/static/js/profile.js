@@ -11,14 +11,33 @@
  */
 
 // (1) 유저 프로파일 페이지 구독하기, 구독취소
-function toggleSubscribe(obj) {
-	if ($(obj).text() === "구독취소") {
-		$(obj).text("구독하기");
-		$(obj).toggleClass("blue");
-	} else {
-		$(obj).text("구독취소");
-		$(obj).toggleClass("blue");
-	}
+function toggleSubscribe(toUserId, obj) {
+    // 구독한 상태
+    if ($(obj).text() === "구독취소") {
+        $.ajax({
+            type: "delete",
+            url: "/api/subscribe/" + toUserId,
+            dataType: "json"
+        }).done(res => {
+            $(obj).text("구독하기");
+            $(obj).toggleClass("blue");
+        }).fail(error => {
+            console.log("구독취소 실패", error)
+        });
+    }
+    // 구독하지 않은 상태
+    else {
+        $.ajax({
+            type: "post",
+            url: "/api/subscribe/" + toUserId,
+            dataType: "json"
+        }).done(res => {
+            $(obj).text("구독취소");
+            $(obj).toggleClass("blue");
+        }).fail(error => {
+            console.log("구독 실패", error)
+        });
+    }
 }
 
 // (2) 구독자 정보  모달 보기
