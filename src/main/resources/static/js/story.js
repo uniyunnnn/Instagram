@@ -6,11 +6,12 @@
 	(4) 댓글쓰기
 	(5) 댓글삭제
  */
-
+// 스크롤 페이징을 위한 변수생성
+let page = 0;
 // (1) 스토리 로드하기
 function storyLoad() {
     $.ajax({
-        url: `/api/image`,
+        url: `/api/image?page=${page}`,
         dataType: "json"
     }).done(res => {
         console.log("성공", res)
@@ -81,7 +82,11 @@ function getStoryItem(image) {
 }
 // (2) 스토리 스크롤 페이징하기
 $(window).scroll(() => {
-
+    let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+    if (checkNum < 1 && checkNum > -1) {
+        page++;
+        storyLoad();
+    }
 });
 
 
