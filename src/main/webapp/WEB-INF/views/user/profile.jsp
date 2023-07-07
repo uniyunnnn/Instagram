@@ -29,8 +29,9 @@
 				<c:choose>
 					<c:when test="${dto.pageOwnerState}">
 						<button class="cta" onclick="location.href='/image/upload'">사진등록</button>
-						<button class="modi" onclick="popup('.modal-info')"></button>
-				        <i class="fas fa-cog"></i>
+						<button class="modi" onclick="popup('.modal-info')">
+							<i class="fas fa-cog"></i>
+						</button>
 					</c:when>
 					<c:otherwise>
 						<c:choose>
@@ -45,7 +46,7 @@
 						</c:choose>
 					</c:otherwise>
 				</c:choose>
-				
+
 			</div>
 
 			<div class="subscribe">
