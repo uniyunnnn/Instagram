@@ -40,7 +40,6 @@ public class Image {
     @ManyToOne
     private Users user;
 
-    // 추후 넣을것들 : 이미지 좋아요, 좋아요 수 , 댓글 정보
     //이미지 좋아요
     @JsonIgnoreProperties({"image"})
     @OneToMany(mappedBy="image")
@@ -50,7 +49,9 @@ public class Image {
     private boolean likeState;
     
     @Transient
-    private Integer likeCount;
+    private Integer likeCount; // 이미지 좋아요 카운팅
+    
+    // 댓글 정보
     
     private LocalDateTime createDate;
 
