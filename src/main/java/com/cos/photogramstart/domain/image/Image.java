@@ -49,6 +49,9 @@ public class Image {
     @Transient // DB에 해당 컬럼을 생성하지 않게 만드는 어노테이션
     private boolean likeState;
     
+    @Transient
+    private Integer likeCount;
+    
     private LocalDateTime createDate;
 
     @PrePersist
