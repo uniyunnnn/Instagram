@@ -14,6 +14,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.cos.photogramstart.domain.image.Image;
 import com.cos.photogramstart.domain.user.Users;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,8 +43,8 @@ public class Likes {
     @JoinColumn(name = "imageId")
     private Image image; // 좋아요가 된 것이 어떤 이미지인지.
 
-    //오류가 터지고 나서 잡아봅시다.
     @ManyToOne
+    @JsonIgnoreProperties({"images"}) // 무한참조오류잡기
     @JoinColumn(name = "userId")
     private Users user; // 좋아요를 누가 한 것인지.
 
