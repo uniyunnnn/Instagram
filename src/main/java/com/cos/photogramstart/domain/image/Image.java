@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.Transient;
 
+import com.cos.photogramstart.domain.comment.Comments;
 import com.cos.photogramstart.domain.likes.Likes;
 import com.cos.photogramstart.domain.user.Users;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -44,6 +46,12 @@ public class Image {
     @JsonIgnoreProperties({"image"})
     @OneToMany(mappedBy="image")
     private List<Likes>likes;
+    
+    //댓글
+    @OrderBy("id ASC")
+    @JsonIgnoreProperties({"image"})
+    @OneToMany(mappedBy="image")
+    private List<Comments>comments;
     
     @Transient // DB에 해당 컬럼을 생성하지 않게 만드는 어노테이션
     private boolean likeState;
