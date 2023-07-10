@@ -14,14 +14,14 @@ function storyLoad() {
         url: `/api/image?page=${page}`,
         dataType: "json"
     }).done(res => {
-        console.log("성공", res)
+        console.log("로드 성공", res)
 
         res.data.forEach((image) => {
             let storyItem = getStoryItem(image);
             $("#storyList").append(storyItem);
         });
     }).fail(error => {
-        console.log("실패", error)
+        console.log("로드 실패", error)
     });
 }
 
@@ -165,7 +165,7 @@ function addComment(imageId) {
         type: "post",
         url: "/api/comment",
         data: JSON.stringify(data),
-        contentType: "applcation/json: charset=utf-8",
+        contentType: "application/json;charset=utf-8",
         dataType: "json"
     }).done(res => {
         console.log("댓글쓰기 성공", res);
@@ -183,7 +183,7 @@ function addComment(imageId) {
 			    <button><i class="fas fa-times"></i></button>
 			  </div>
 	`;
-	commentList.uppend(content); // 최신글을 뒤에 
+	commentList.prepend(content); // 최신글을 뒤에 
 	commentInput.val("");
 }
 
