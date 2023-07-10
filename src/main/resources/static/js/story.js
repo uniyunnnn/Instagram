@@ -203,8 +203,9 @@ function addComment(imageId) {
 	`;
 		commentList.append(content); // 최신글을 뒤에 
 	}).fail(error => {
-		console.log("댓글쓰기 실패", error);
-	});
+        console.log("댓글쓰기 실패", error);
+        alert("오류 : " + error.responseJSON.data.content);
+    });
 
 
 
