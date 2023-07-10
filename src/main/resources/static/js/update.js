@@ -2,7 +2,7 @@
 function update(userId,event) {
     event.preventDefault(); // form태그의 action경로를 비활성화 시킨다.
 	//form태그가 가지고 있는 값을 다담아서 넘긴다.
-    let data = $("#profileUpdate").serialize();
+    let data = $("#profileUpdate").serialize(); // key=value
     
     console.log(data);
 
