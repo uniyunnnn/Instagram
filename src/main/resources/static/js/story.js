@@ -63,9 +63,9 @@ function getStoryItem(image) {
 			<p>${image.caption}</p>
 		</div>
 
-		<div id="storyCommentList-1">
+		<div id="storyCommentList-${image.id}">
 
-			<div class="sl__item__contents__comment" id="storyCommentItem-1"">
+			<div class="sl__item__contents__comment" id="storyCommentItem-1">
 				<p>
 					<b>Lovely :</b> 부럽습니다.
 				</p>
@@ -79,8 +79,8 @@ function getStoryItem(image) {
 		</div>
 
 		<div class="sl__item__input">
-			<input type="text" placeholder="댓글 달기..." id="storyCommentInput-1" />
-			<button type="button" onClick="addComment()">게시</button>
+			<input type="text" placeholder="댓글 달기..." id="storyCommentInput-${image.id}" />
+			<button type="button" onClick="addComment(${image.id})">게시</button>
 		</div>
 
 	</div>
@@ -145,19 +145,34 @@ function toggleLike(imageId) {
 }
 
 // (4) 댓글쓰기
-function addComment() {
+function addComment(imageId) {
 
-	let commentInput = $("#storyCommentInput-1");
-	let commentList = $("#storyCommentList-1");
+	let commentInput = $(`#storyCommentInput-${imageId}`);
+    let commentList = $(`#storyCommentList-${imageId}`);
 
-	let data = {
-		content: commentInput.val()
-	}
+    let data = {
+        imageId: imageId,
+        content: commentInput.val()
+    }
 
 	if (data.content === "") {
 		alert("댓글을 작성해주세요!");
 		return;
 	}
+	
+	// 비동기 통신 
+	$.ajax({
+        type: "post",
+        url: "/api/comment",
+        data: JSON.stringify(data),
+        contentType: "applcation/json: charset=utf-8",
+        dataType: "json"
+    }).done(res => {
+        console.log("댓글쓰기 성공", res);
+    }).fail(error => {
+        console.log("댓글쓰기 실패", error);
+    });
+
 
 	let content = `
 			  <div class="sl__item__contents__comment" id="storyCommentItem-2""> 
@@ -168,7 +183,7 @@ function addComment() {
 			    <button><i class="fas fa-times"></i></button>
 			  </div>
 	`;
-	commentList.prepend(content);
+	commentList.uppend(content); // 최신글을 뒤에 
 	commentInput.val("");
 }
 
