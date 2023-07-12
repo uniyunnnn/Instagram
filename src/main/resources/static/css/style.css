@@ -35,7 +35,12 @@ button {
   justify-content: center;
   align-items: center;
 }
-
+.login_w{
+	text-align:center;
+}
+img {
+    width: 200px;
+}
 /*로그인폼과 가입하기를 감싸는 컨테이너*/
 .login__form__container {
   width: 350px;

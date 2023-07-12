@@ -28,6 +28,17 @@ spring:
     user:
       name: test
       password: 1234
+      
+    oauth2:
+      client:
+        registration:
+          google:
+           client-id: 1066897887807-sbl8c9hq5k99hj6nv29i9esuj96q7ubb.apps.googleusercontent.com
+           client-secret: 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
+           scope:
+            - email
+            - profile
+          
 
 file:
   path: C:/workspace/springbootwork/upload/
