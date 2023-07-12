@@ -15,6 +15,8 @@ public class SubscribeDto {
     
     private Integer id;
     
+    private String name;
+    
     private String username;
 
     private String profileImageUrl;
@@ -23,8 +25,9 @@ public class SubscribeDto {
 
     private Integer equalUserState;
     
-    public SubscribeDto(BigDecimal id, String username, String profileImageUrl, BigDecimal subscribeState, BigDecimal equalUserState) {
+    public SubscribeDto(BigDecimal id, String name, String username, String profileImageUrl, BigDecimal subscribeState, BigDecimal equalUserState) {
         this.id = id != null ? id.intValue() : null;
+        this.name = name;
         this.username = username;
         this.profileImageUrl = profileImageUrl;
         this.subscribeState = subscribeState != null ? subscribeState.intValue() : null;
