@@ -25,7 +25,7 @@ public class SubscribeService {
 	public List<SubscribeDto> 구독리스트(Integer principalId,Integer pageUserId){
 		
 		StringBuffer sb = new StringBuffer();
-		    sb.append("SELECT u.id, u.username, u.profileImageUrl, ");
+		    sb.append("SELECT u.id, u.name,u.username, u.profileImageUrl, ");
 	        sb.append("CASE WHEN EXISTS (SELECT 1 FROM subscribe WHERE fromUserId = ? AND toUserId = u.id) THEN 1 ELSE 0 END AS subscribeState, ");
 	        sb.append("CASE WHEN ? = u.id THEN 1 ELSE 0 END AS equalUserState ");
 	        sb.append("FROM users u INNER JOIN subscribe s ON u.id = s.toUserId ");
