@@ -31,7 +31,7 @@ public class Users {
 	@Id // Primary Key를 지정해주는 어노테이션
 	private Integer id; // 데이터가 들어갈 때 마다 번호를 매겨줄것임.
 
-	@Column(length = 20, unique = true)
+	@Column(length = 100, unique = true)
 	private String username; // 아이디
 	@Column(nullable = false)
 	private String password; // 비밀번호
