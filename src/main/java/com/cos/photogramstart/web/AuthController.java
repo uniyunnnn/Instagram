@@ -28,10 +28,6 @@ public class AuthController {
 	
 	private final AuthService authService;
 	
-//	public AuthController(AuthService authSevice) {
-//		this.authService = authService;
-//	}
-	
 	@GetMapping("/auth/signup")
 	public String signupForm() {
 		return "auth/signup";
@@ -41,25 +37,11 @@ public class AuthController {
 	@PostMapping("/auth/signup")
 	public String signup(@Valid SignupDto signupDto,BindingResult bindingResult) {
 		
-	   if(bindingResult.hasErrors()) {
-		   Map<String,String> errorMap = new HashMap<>();
-		   
-		   for(FieldError error : bindingResult.getFieldErrors()) {
-			   errorMap.put(error.getField(), error.getDefaultMessage());
-               System.out.println(error.getDefaultMessage());
+		Users user = signupDto.toEntity();
+		Users userEntity = authService.회원가입(user);
+		return "auth/signin"; // 회원가입이 완료될시 로그인 페이지로 이동
 
-		   }//for
-		   throw new CustomValidationException("유효성검사 실패함", errorMap);
-	   }else { // 오류가나면 . 
-			//User <- SignupDto
-			Users user = signupDto.toEntity();
-			//log.info(user.toString());
-			Users userEntity = authService.회원가입(user);
-			System.out.println(userEntity);
-			return "auth/signin"; // 회원가입이 완료될시 로그인 페이지로 이동
-	   } // if else		
 	}
-	
 	
 	@GetMapping("/auth/signin")
 	public String signinForm() {

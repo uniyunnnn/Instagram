@@ -43,13 +43,11 @@ public class ImageController {
 	public String imageUpload(ImageUploadDto imageUploadDto,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		// 서비스호출
-
+		// 공통적이지 않은부분이라 어쩔수없음.
 		if (imageUploadDto.getFile().isEmpty()) { // imageUploadDto에서 File이 없으면
 			throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
-		} else {
-
 		}
-
+		
 		imageService.사진업로드(imageUploadDto, principalDetails);
 		return "redirect:/user/" + principalDetails.getUser().getId();
 	}
