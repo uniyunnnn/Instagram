@@ -12,5 +12,8 @@ public interface ImageRepository extends JpaRepository<Image, Integer>{
     List<Image> mStory(Integer principalId, Pageable pageable);
 	
 	@Query(value = "SELECT i.* FROM image i INNER JOIN (SELECT imageId, COUNT(imageId) likeCount FROM likes GROUP BY imageId) c ON i.id = c.imageId ORDER BY likeCount DESC", nativeQuery = true)
-    List<Image> mPopular();;
+    List<Image> mPopular();
+	
+	@Query(value = "SELECT * FROM image", nativeQuery = true)
+	List<Image> mStoryAll(Pageable pageable);
 }
