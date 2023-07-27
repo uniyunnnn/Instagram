@@ -9,10 +9,12 @@ server:
 spring:
   config:
     import: classpath:application-secret.yml
+
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+
   jpa:
     open-in-view: true
     hibernate:
@@ -20,25 +22,45 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
+
   servlet:
     multipart:
       enabled: true
       max-file-size: 2MB
+
   security:
     user:
       name: test
       password: 1234
-      
+
     oauth2:
       client:
         registration:
           google:
-           client-id: 1066897887807-sbl8c9hq5k99hj6nv29i9esuj96q7ubb.apps.googleusercontent.com
-           client-secret: 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
-           scope:
-            - email
-            - profile
-          
+            client-id: 1066897887807-sbl8c9hq5k99hj6nv29i9esuj96q7ubb.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+          kakao:
+            client-id: 99016a10e3cd29b1a2ff930d6684fc7b
+            client-secret: RXF8YSIOcj101g2jZoRPL4fERVlCQWcS
+            scope:
+              - account_email
+              - profile_nickname
+              - profile_image
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-name: Kakao
+            client-authentication-method: POST  
+        
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize # 요청 URL
+            token-uri: https://kauth.kakao.com/oauth/token # 토큰을 받을 주소
+            user-info-uri: https://kapi.kakao.com/v2/user/me # 회원정보를 받는 URL
+            user-name-attribute: id # 받을 데이터의 최상위 키 값
 
 file:
   path: C:/workspace/springbootwork/upload/
