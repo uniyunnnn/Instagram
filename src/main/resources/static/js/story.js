@@ -193,7 +193,7 @@ function addComment(imageId) {
 		let content = `
 			  <div class="sl__item__contents__comment" id="storyCommentItem-${comment.id}"> 
 			    <p>
-			      <b>${comment.user.username}</b>
+			      <b>${comment.user.name} : </b>
 			      ${comment.content}
 			    </p>
 			    <button onclick="deleteComment(${comment.id})">
