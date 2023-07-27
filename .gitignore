@@ -33,4 +33,5 @@ build/
 .vscode/
 
 ### DB ###
-/application-secret.yml
+src/main/resources/application.yml
+src/main/resources/application-secret.yml
