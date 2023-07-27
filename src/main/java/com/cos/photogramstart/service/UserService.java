@@ -110,7 +110,12 @@ public class UserService {
         userEntity.setPhone(user.getPhone());
         userEntity.setGender(user.getGender());
 
-        return userEntity;
+        if (userEntity.getPassword() == null) {
+            return userEntity;
+        } else {
+            userEntity.setPassword(encPassword);
+            return userEntity;
+        }
     } // 3. 리턴 완료되면 더티체킹이 일어나면서 업데이트가 완료됨.
     
 }
