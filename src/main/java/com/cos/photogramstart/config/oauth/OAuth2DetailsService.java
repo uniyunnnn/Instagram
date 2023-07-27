@@ -34,10 +34,8 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
         if (userRequest.getClientRegistration().getClientName().equals("Google")) {
             oAuth2UserInfo = new GoogleInfo(oauth2User.getAttributes());
-        //} else if (userRequest.getClientRegistration().getClientName().equals("Facebook")) {
-            //oAuth2UserInfo = new FacebookInfo(oauth2User.getAttributes());
-        //} else if (userRequest.getClientRegistration().getClientName().equals("Naver")) {
-            //oAuth2UserInfo = new NaverInfo((Map)oauth2User.getAttributes().get("response"));
+       } else if (userRequest.getClientRegistration().getClientName().equals("Naver")) {
+            oAuth2UserInfo = new NaverInfo((Map)oauth2User.getAttributes().get("response"));
         } else if (userRequest.getClientRegistration().getClientName().equals("Kakao")) {
             oAuth2UserInfo = new KakaoInfo((Map)oauth2User.getAttributes());
         }

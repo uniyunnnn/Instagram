@@ -20,6 +20,7 @@ public abstract class OAuth2UserInfo {
 
 	    public abstract String getId();
 
+	    @Column(nullable = false)
 	    public abstract String getName();
 
 	    @Column(nullable = false)
