@@ -2,6 +2,8 @@ package com.cos.photogramstart.config.oauth;
 
 import java.util.Map;
 
+import javax.persistence.Column;
+
 public abstract class OAuth2UserInfo {
 
 	   protected Map<String, Object> attributes;
@@ -20,6 +22,7 @@ public abstract class OAuth2UserInfo {
 
 	    public abstract String getName();
 
+	    @Column(nullable = false)
 	    public abstract String getEmail();
 
 	    public abstract String getImageUrl();
