@@ -29,7 +29,7 @@
 
 						<!--로그인 인풋-->
 						<form class="login__input" action="/auth/signin" method="post">
-							<input type="text" name="username" placeholder="유저네임"
+							<input type="text" name="username" placeholder="아이디"
 								required="required" /> <input type="password" name="password"
 								placeholder="비밀번호" required="required" />
 							<button>로그인</button>
